@@ -52,6 +52,75 @@ $ spring init \
     recordstore
 ```
 
+**Configure database**
+
+```bash
+# ~/.zprofile, or .wherever
+alias load_dotenv='env $(grep -v '^#' .env | xargs)' $*
+```
+
+```bash
+# .env
+SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/recordstore_development?useUnicode=yes
+SPRING_DATASOURCE_USERNAME=recordstore-admin
+SPRING_DATASOURCE_PASSWORD=s3cR3+
+```
+
+```bash
+$ load_dotenv ./bin/db_create  # see also ./bin/db_destroy
+$ load_dotenv ./bin/db_info
+```
+
+**Add flyway plugin and dependency to `build.gradle`**
+
+```bash
+$ ./gradlew build --refresh-dependencies
+$ ./gradlew tasks --all
+```
+
+**Add `./bin/db_create_migration` script**
+
+```bash
+$ ./bin/db_create_migration Create_Table_Albums
+```
+
+```sql
+-- src/main/resources/db/migration/VYYYYMMDDHHMMSS__Create_Table_Albums.sql
+-- Create_Table_Albums
+
+create table albums (
+  id serial,
+  artist varchar(255) not null,
+  title varchar(255) not null,
+  year smallint not null
+);
+```
+
+**Run Migration**
+
+```bash
+$ load_dotenv ./gradlew flywayMigrate --info
+```
+
+**Seed Albums**
+
+```bash
+$ ./bin/db_create_migration Seed_Albums
+```
+
+```sql
+-- src/main/resources/db/migration/VYYYYMMDDHHMMSS__Seed_Albums.sql
+-- Seed_Albums
+
+insert into albums(artist, title, year)
+values
+  ('Nirvana', 'Nevermind', 1991),
+  ('REM', 'Automatic for the People', 1992),
+  ('Dr. Dre', 'The Chronic', 1992);
+```
+
+**Run the Migration**
+
 ## References
 
 [springboot-cli-macos-install]: https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started-homebrew-cli-installation

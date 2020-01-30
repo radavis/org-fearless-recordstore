@@ -1,4 +1,5 @@
 plugins {
+    id 'org.flywaydb.flyway' version "${flywayVersion}"
     id 'org.springframework.boot' version "${springVersion}"
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
@@ -23,11 +24,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "org.flywaydb:flyway-core:${flywayVersion}"
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java'
+    compile 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+}
+
+flyway {
+    url = System.getenv('SPRING_DATASOURCE_URL')
+    user = System.getenv('SPRING_DATASOURCE_USERNAME')
+    password = System.getenv('SPRING_DATASOURCE_PASSWORD')
 }
 
 test {

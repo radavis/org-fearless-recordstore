@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+database_path=${SPRING_DATASOURCE_URL##*/}
+database_name=${database_path%%\?*}
+
+mysql -e "drop database $database_name;"
+mysql -e "drop user '$SPRING_DATASOURCE_USERNAME'@'localhost';"
+mysql -e "flush privileges;"
