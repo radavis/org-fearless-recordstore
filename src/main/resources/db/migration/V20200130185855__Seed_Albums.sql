@@ -1,6 +1,6 @@
 -- Seed_Albums
 
-insert into albums(artist, title, year)
+insert into album(artist, title, year)
 values
   ('Nirvana', 'Nevermind', 1991),
   ('REM', 'Automatic for the People', 1992),
