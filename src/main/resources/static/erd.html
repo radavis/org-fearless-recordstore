@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ERD</title>
+    <style type="text/css">
+      body {
+        margin: 5%;
+      }
+
+      code {
+        font-size: 1rem;
+      }
+
+      pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 0 1rem;
+        width: 50rem;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="er-diagram"></canvas>
+
+    <pre>
+      <code id="nomnoml-source">
+#arrowSize: 0.8
+#zoom: 1.2
+
+[user |
+  name
+  email
+]
+
+[artist |
+  name
+  year
+  location
+]
+
+[album |
+  artist_id
+  title
+  year
+]
+
+[artist]->[album]
+
+[song |
+  album_id
+  track_number
+  title
+  duration_in_seconds
+]
+
+[album]->[song]
+
+[genre |
+  name
+]
+
+[artist_genre |
+  artist_id
+  genre_id
+]
+
+[artist]->[artist_genre]
+[genre]->[artist_genre]
+      </code>
+    </pre>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js" 
+    integrity="sha256-YuuXh8z9vfQUjU2Z0x2/nuR3Dq/ugeY311m1KqwizVE=" 
+    crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nomnoml/0.6.2/nomnoml.min.js" 
+    integrity="sha256-kLHwcrWU9s2K4q5V1tiRZpnjBsVDJEXS4fEAuOfGa6Y=" 
+    crossorigin="anonymous">
+  </script>
+
+  <script>
+    var canvas = document.getElementById('er-diagram');
+    var source = document.getElementById('nomnoml-source').innerText;
+    nomnoml.draw(canvas, source);
+  </script>
+</html>
+
