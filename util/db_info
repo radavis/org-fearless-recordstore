@@ -7,3 +7,4 @@ database_name=${database_path%%\?*}
 mysql -e "show databases like '$database_name';"
 mysql -e "select host, user from mysql.user where user like '$SPRING_DATASOURCE_USERNAME';"
 mysql -e "show grants for '$SPRING_DATASOURCE_USERNAME'@'localhost';"
+mysql "$database_name" -e "show tables;"

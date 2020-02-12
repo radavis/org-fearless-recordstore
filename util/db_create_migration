@@ -2,7 +2,7 @@
 set -e
 
 # filename: ./util/db_create_migration
-usage="usage: ./util/db_create_migration Name_of_Your_Migration"
+usage="usage: ./util/db_create_migration name_of_your_migration"
 
 if [[ "$#" -ne 1 ]]; then
     echo "$usage"

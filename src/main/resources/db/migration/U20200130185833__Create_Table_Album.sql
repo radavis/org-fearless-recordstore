@@ -1,3 +1,3 @@
--- Undo Create_Table_Album
+-- undo create_table_album
 
 drop table album;

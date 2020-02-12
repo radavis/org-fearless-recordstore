@@ -1,4 +1,4 @@
--- Create_Table_Album
+-- create_table_album
 
 create table album (
   id serial,

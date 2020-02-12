@@ -1,4 +1,4 @@
--- Seed_Albums
+-- seed_albums
 
 insert into album(artist, title, year)
 values
