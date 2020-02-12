@@ -4,28 +4,19 @@ An example project for learning and understanding the Spring Data JPA library.
 
 ## Build a Spring Data JPA App
 
-Install the `springboot` CLI tool. [docs][springboot-cli-macos-install]
-
-```bash
-# macOS
-$ brew tap pivotal/tap
-$ brew install springboot
-```
-
-View the options for generating a new Spring Boot app
-
-```bash
-$ spring init --list
-```
-
 Initialize a new Spring Boot application. [docs][springboot-cli-init-app]
 
 ```bash
-$ spring init \
-    --dependencies=web,data-jpa,mysql,lombok,flyway \
-    --groupId=org.fearless \
-    --type=gradle-project \
-    recordstore
+$ mkdir recordstore && cd $_
+$ curl https://start.spring.io/starter.zip \
+    -d type=gradle-project \
+    -d platformVersion=2.2.4.RELEASE \
+    -d dependencies=data-jpa,flyway,lombok,mysql,web \
+    -d groupId=org.fearless \
+    -d artifactId=recordstore \
+    -o starter.zip
+$ unzip starter.zip
+$ rm starter.zip
 ```
 
 **Configure database**
