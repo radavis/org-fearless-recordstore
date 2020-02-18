@@ -97,6 +97,7 @@ values
 * [Declare dependency versions as variables in `gradle.properties`](https://stackoverflow.com/a/58691504/2675670)
 * [Top 100 Albums of the 1990s (Pitchfork)](https://pitchfork.com/features/lists-and-guides/5923-top-100-albums-of-the-1990s/?page=10)
 * [Spring Controller Request Mapping (Stack Tips)](https://www.stacktips.com/tutorials/spring/how-spring-controller-request-mapping-works-in-spring-mvc)
+* [Testing JPA Entities in Spring Boot](https://ajayiyengar.com/2017/07/08/testing-jpa-entities-in-a-spring-boot-application/)
 
 [springboot-cli-macos-install]: https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started-homebrew-cli-installation
 [springboot-cli-init-app]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-cli.html#cli-init

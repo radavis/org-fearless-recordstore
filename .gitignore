@@ -30,5 +30,8 @@ out/
 
 ### VS Code ###
 .vscode/
-.env
 bin
+
+### etc ###
+.env
+src/main/resources/db/schema.sql
