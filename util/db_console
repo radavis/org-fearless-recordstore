@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+database_path=${SPRING_DATASOURCE_URL##*/}
+database_name=${database_path%%\?*}
+
+mysql -u"$SPRING_DATASOURCE_USERNAME" -p"$SPRING_DATASOURCE_PASSWORD" "$database_name"
+
