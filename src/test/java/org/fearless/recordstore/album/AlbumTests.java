@@ -76,7 +76,9 @@ public class AlbumTests {
     public void test_toString() {
         entityManager.persistAndFlush(album);
         String albumString = album.toString();
-        String expectedString = "The Flaming Lips - The Soft Bulletin (1999)";
-        assertTrue(albumString.equals(expectedString));
+        assertTrue(albumString.contains("id="));
+        assertTrue(albumString.contains("artist="));
+        assertTrue(albumString.contains("title=The Soft Bulletin"));
+        assertTrue(albumString.contains("year=1999"));
     }
 }
