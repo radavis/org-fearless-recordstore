@@ -1,8 +1,12 @@
 package org.fearless.recordstore.album;
 
+import org.fearless.recordstore.artist.Artist;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -12,17 +16,20 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String artist;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Artist artist;
 
+    @NotBlank
     private String title;
 
     private Integer year;
 
     public Album() {}
 
-    public Album(Long id, String artist, String title, Integer year) {
+    public Album(Long id, Artist artist, String title, Integer year) {
         this.id = id;
-        this.artist = title;
+        this.artist = artist;
         this.title = title;
         this.year = year;
     }
@@ -35,11 +42,11 @@ public class Album {
         this.id = id;
     }
 
-    public String getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(String artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
     }
 
@@ -60,6 +67,6 @@ public class Album {
     }
 
     public String toString() {
-        return "" + artist + " - " + title + " (" + year + ")";
+        return "" + artist.getName() + " - " + title + " (" + year + ")";
     }
 }

@@ -18,7 +18,7 @@ public class AlbumRepositoryIntegrationTest {
     @Test
     public void whenFindByTitle_thenReturnAlbum() {
         Album beeThousand = new Album();
-        beeThousand.setArtist("Guided by Voices");
+        // beeThousand.setArtist("Guided by Voices");
         beeThousand.setTitle("Bee Thousand");
         beeThousand.setYear(1994);
 
