@@ -1,5 +1,7 @@
 package org.fearless.recordstore.artist;
 
+import org.fearless.recordstore.album.Album;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -54,5 +56,28 @@ public class ArtistTests {
         assertTrue(artistString.contains("name=Nirvana"));
         assertTrue(artistString.contains("location=Aberdeen, WA"));
         assertTrue(artistString.contains("year=1987"));
+    }
+
+    @Test
+    public void test_getAlbums() {
+        entityManager.persistAndFlush(artist);
+        assertTrue(artist.getAlbums().size() == 0);
+
+        Album bleach = new Album();
+        bleach.setArtist(artist);
+        bleach.setTitle("Bleach");
+        bleach.setYear(1989);
+        entityManager.persistAndFlush(bleach);
+
+        Album unplugged = new Album();
+        unplugged.setArtist(artist);
+        unplugged.setTitle("Unplugged in New York");
+        unplugged.setYear(1994);
+        entityManager.persistAndFlush(unplugged);
+
+        entityManager.refresh(artist);
+        assertTrue(artist.getAlbums().size() == 2);
+        assertTrue(artist.getAlbums().contains(bleach));
+        assertTrue(artist.getAlbums().contains(unplugged));
     }
 }
