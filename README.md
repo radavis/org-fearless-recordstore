@@ -52,8 +52,8 @@ $ ./bin/db_create_migration Create_Table_Album
 ```
 
 ```sql
--- src/main/resources/db/migration/VYYYYMMDDHHMMSS__Create_Table_Album.sql
--- Create_Table_Album
+-- src/main/resources/db/migration/VYYYYMMDDHHMMSS__create_table_album.sql
+-- create_table_album
 
 create table album (
   id serial,
@@ -76,8 +76,8 @@ $ ./bin/db_create_migration Seed_Albums
 ```
 
 ```sql
--- src/main/resources/db/migration/VYYYYMMDDHHMMSS__Seed_Albums.sql
--- Seed_Albums
+-- src/main/resources/db/migration/VYYYYMMDDHHMMSS__seed_albums.sql
+-- seed_albums
 
 insert into album(artist, title, year)
 values
