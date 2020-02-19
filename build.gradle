@@ -1,8 +1,10 @@
 plugins {
+    id 'com.diffplug.gradle.spotless' version '3.27.1'
     id 'org.flywaydb.flyway' version "${flywayVersion}"
     id 'org.springframework.boot' version "${springVersion}"
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'jacoco'
 }
 
 group = 'org.fearless'
@@ -43,5 +45,31 @@ test {
     testLogging {
         events "PASSED", "SKIPPED", "FAILED"
         // showStandardStreams = true
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled true
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        removeUnusedImports()
+    }
+
+    format 'misc', {
+        target '**/*.gradle', '**/*.md', '**/.gitignore'
+        // targetExclude 'src/main/codegen/**', 'src/test/codegen/**'
+        trimTrailingWhitespace()
+        indentWithSpaces(2)
+        endWithNewline()
     }
 }
