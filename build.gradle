@@ -1,8 +1,8 @@
 plugins {
-    id 'com.diffplug.gradle.spotless' version '3.27.1'
+    id 'com.diffplug.gradle.spotless' version "${spotlessVersion}"
     id 'org.flywaydb.flyway' version "${flywayVersion}"
     id 'org.springframework.boot' version "${springVersion}"
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
     id 'java'
     id 'jacoco'
 }
@@ -49,7 +49,7 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "${jacocoVersion}"
 }
 
 jacocoTestReport {
@@ -63,13 +63,5 @@ spotless {
     java {
         googleJavaFormat()
         removeUnusedImports()
-    }
-
-    format 'misc', {
-        target '**/*.gradle', '**/*.md', '**/.gitignore'
-        // targetExclude 'src/main/codegen/**', 'src/test/codegen/**'
-        trimTrailingWhitespace()
-        indentWithSpaces(2)
-        endWithNewline()
     }
 }
